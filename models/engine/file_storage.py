@@ -13,7 +13,7 @@ class FileStorage:
         if cls is None:
             return FileStorage.__objects
         elif cls not in FileStorage.__objects:
-            pass
+            return self.__objects
         else:
             return FileStorage.__objects[cls]
 
