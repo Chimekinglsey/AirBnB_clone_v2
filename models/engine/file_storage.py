@@ -59,7 +59,6 @@ class FileStorage:
         if obj is None:
             pass
         else:
-            pass
             for key, value in self.__objects.items():
                 del (self.__objects[key])
                 self.__objects = self.__objects
