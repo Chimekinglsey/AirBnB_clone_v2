@@ -61,7 +61,7 @@ class FileStorage:
         else:
             pass
             for key, value in self.__objects.items():
-                del(self.__objects[key])
+                del (self.__objects[key])
                 self.__objects = self.__objects
                 break
             return self.__objects
