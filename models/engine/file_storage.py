@@ -64,3 +64,4 @@ class FileStorage:
                 del(self.__objects[key])
                 self.__objects = self.__objects
                 break
+            return self.__objects
