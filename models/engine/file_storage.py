@@ -16,7 +16,6 @@ class FileStorage:
             new_dict = {}
             for key, value in FileStorage.__objects.items():
                 if cls == value.__class__:
-                    print(value.__class__.__name__)
                     new_dict[key] = value
             return new_dict
 
@@ -58,7 +57,7 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """Deletes an object from FileStorage if present"""
+        """Deletes an  object from FileStorage if present"""
         if obj is None:
             pass
         else:
