@@ -1,7 +1,8 @@
 from sqlalchemy import create_engine, MetaData
-from sqlalchemy.orm import Session, sessionmaker, scoped_session
-from models.state import Base
+from sqlalchemy.orm import sessionmaker
+from models.state import Base, State
 from os import getenv
+from models.city import City
 
 
 class DBStorage:
@@ -27,6 +28,7 @@ class DBStorage:
         """Session creation"""
         classes = ['User', 'State', 'City', 'Amenity', 'Place', 'Review']
         my_dict = {}
+        Session = sessionmaker(bind=self.__engine)
         self.__session = Session()
         if cls is None:
             for attributes in classes:
@@ -58,5 +60,6 @@ class DBStorage:
     def reload(self):
         """creates all tables in the database"""
         Base.metadata.create_all(self.__engine)
-        sec = sessionmaker(bind=self.__engine)
-        self.__session = scoped_session(sec, expire_on_commit=False)
+        Sessions = sessionmaker(bind=self.__engine)
+        session = scoped_session(Sessions, expire_on_commit=False)
+        self.__session = session()
