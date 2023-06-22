@@ -32,10 +32,28 @@ class DBStorage:
             for attributes in classes:
                 get = self.__session.query(attributes).all()
                 for i in get:
-                    print(i)
-            else:
-                self.__session.query(cls).all()
+                    key = i.__class__.__name__ + '.' + i.id
+                    my_dict[key] = i
+            return my_dict
+        else:
+            get = self.__session.query(cls).all()
+            for i in get:
+                key = i.__class__.__name__ + '.' + i.id
+                my_dict[key] = i
+            return my_dict
 
+    def new(self, obj):
+        """add object passed to database"""
+        self.__session.add(obj)
 
-chk = DBStorage()
-chk.all('User')
+    def save(self):
+        """Save the object to the database"""
+        self.__session.commit()
+
+    def delete(self, obj=None):
+        """delete object passed"""
+        if obj:
+            self.__session.delete(obj)
+
+    def reload(self):
+        
