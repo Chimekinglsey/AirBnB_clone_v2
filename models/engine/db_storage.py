@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, MetaData
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, sessionmaker, scoped_session
 from models.state import Base
 from os import getenv
 
@@ -56,4 +56,7 @@ class DBStorage:
             self.__session.delete(obj)
 
     def reload(self):
-        
+        """creates all tables in the database"""
+        Base.metadata.create_all(self.__engine)
+        sec = sessionmaker(bind=self.__engine)
+        self.__session = scoped_session(sec, expire_on_commit=False)
