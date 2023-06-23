@@ -1,8 +1,14 @@
 from sqlalchemy import create_engine, MetaData
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 from models.state import Base, State
 from os import getenv
 from models.city import City
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class DBStorage:
@@ -60,6 +66,7 @@ class DBStorage:
     def reload(self):
         """creates all tables in the database"""
         Base.metadata.create_all(self.__engine)
-        Sessions = sessionmaker(bind=self.__engine)
-        session = scoped_session(Sessions, expire_on_commit=False)
+        Sessions = sessionmaker(bind=self.__engine,
+                                expire_on_commit=False)
+        session = scoped_session(Sessions)
         self.__session = session()
