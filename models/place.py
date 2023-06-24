@@ -2,22 +2,7 @@
 """This is the place class"""
 from sqlalchemy.ext.declarative import declarative_base
 from models.base_model import BaseModel, Base
-<<<<<<< HEAD
 from sqlalchemy import Column, Table, String, Integer, Float, ForeignKey
-=======
-<<<<<<< HEAD
-from sqlalchemy import Column, String, ForeignKey, Integer, Float
-
-class Place(BaseModel, Base):
-    """ A place to stay """
-    __tablename__ = 'places'
-    city_id = Column(String(60), ForeignKey("cities.id"), nullable=False)
-    user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
-    name = Column(String(128), nullable=False)
-    description = Column(String(1024), nullable=False)
-=======
-from sqlalchemy import Column, String, Integer, ForeignKey, Float, Table
->>>>>>> a58bc570ae84b96a13ec68ff845a4782023840bd
 from sqlalchemy.orm import relationship
 from os import getenv
 import models
@@ -54,29 +39,10 @@ class Place(BaseModel, Base):
     user_id = Column(String(60), ForeignKey("users.id"), nullable=False)
     name = Column(String(128), nullable=False)
     description = Column(String(1024))
->>>>>>> e5aaa9d07724893244392feca44fc8071e4991e5
     number_rooms = Column(Integer, nullable=False, default=0)
     number_bathrooms = Column(Integer, nullable=False, default=0)
     max_guest = Column(Integer, nullable=False, default=0)
     price_by_night = Column(Integer, nullable=False, default=0)
-<<<<<<< HEAD
-    latitude = Column(Float, nullable=False)
-    longitude = Column(Float, nullable=False)
-    
-    """
-    city_id = ""
-    user_id = ""
-    name = ""
-    description = ""
-    number_rooms = 0
-    number_bathrooms = 0
-    max_guest = 0
-    price_by_night = 0
-    latitude = 0.0
-    longitude = 0.0
-    amenity_ids = []"""
-
-=======
     latitude = Column(Float)
     longitude = Column(Float)
     amenity_ids = []
@@ -105,7 +71,6 @@ class Place(BaseModel, Base):
                     result.append(elem)
             return (result)
 
-<<<<<<< HEAD
         @property
         def amenities(self):
             """ Returns list of amenity ids """
@@ -116,13 +81,3 @@ class Place(BaseModel, Base):
             """ Appends amenity ids to the attribute """
             if type(obj) is Amenity and obj.id not in self.amenity_ids:
                 self.amenity_ids.append(obj.id)
-=======
-    @amenities.setter
-    def amenities(self, obj):
-        """Setter attribute that handles append method for adding an Amenity.id
-        to the attribute amenity_ids.
-        """
-        if isinstance(obj, 'Amenity'):
-            self.amenity_id.append(obj.id)
->>>>>>> e5aaa9d07724893244392feca44fc8071e4991e5
->>>>>>> a58bc570ae84b96a13ec68ff845a4782023840bd
