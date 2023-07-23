@@ -23,5 +23,13 @@ def hbnb():
     return "HBNB"
 
 
+@app.route('/c/<text>', strict_slashes=False)
+def hbnb_text(text):
+    """This prints `C` plus text received for all root/c/<text> requests"""
+    if text:
+        text = text.replace("_", " ")
+        return f"C {text}"
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
