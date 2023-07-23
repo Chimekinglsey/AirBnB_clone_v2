@@ -40,13 +40,14 @@ def python_text(text="is cool"):
     return f"Python {text}"
 
 
-@app.route('/number/<n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def int_num(n):
     """Displays passed number only if it's a number"""
-    if n.isdigit():
+    """if type(n) == int:
         return f"{n} is a number"
     else:
-        pass
+        pass"""
+    return f"{n} is a number"
 
 
 if __name__ == '__main__':
