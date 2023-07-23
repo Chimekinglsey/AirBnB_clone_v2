@@ -2,7 +2,8 @@
 """
 0. Hello Flask!
 This module creates a simple flask application that listens at 0.0.0.0 port 5000
-for all connections
+for all connections. By default, flask runs on port 5000. if not, the app.run
+	will look like: app.run(host='0.0.0.0', port=5000)
 """
 
 from flask import Flask
@@ -17,4 +18,4 @@ def say_hello():
 
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=5000)
+	app.run(host='0.0.0.0')
