@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 0. Hello Flask!
+This module creates a simple flask application that listens at 0.0.0.0 port 5000
 """
 
 from flask import Flask
