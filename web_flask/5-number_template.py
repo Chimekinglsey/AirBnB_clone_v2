@@ -6,7 +6,7 @@ This module creates a simple flask application that listens at 0.0.0.0 port
 the app.run will look like: app.run(host='0.0.0.0', port=5000)
 """
 
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -31,6 +31,7 @@ def C_text(text):
         return f"C {text}"
 
 
+@app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def python_text(text="is cool"):
     """Displays Python followed by the text passed"""
@@ -39,6 +40,19 @@ def python_text(text="is cool"):
     return f"Python {text}"
 
 
+@app.route('/number/<int:n>', strict_slashes=False)
+def int_num(n):
+    """Displays passed number only if it's a number"""
+    """if type(n) == int:
+        return f"{n} is a number"
+    else:
+        pass"""
+    return f"{n} is a number"
+
+
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def number_template(n):
+    """displays a HTML page only if `n` is an integer"""
+    return render_template('5-number.html', value=n)
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
-
