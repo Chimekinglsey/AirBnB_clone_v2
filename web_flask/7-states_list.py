@@ -23,8 +23,9 @@ def state_list():
     """lists the states"""
     states = "States"
     s_list = list(storage.all(State).values)
-    return render_template('7-states_list.html', value=states, state_list=s_list)
+    return render_template('7-states_list.html', value=states, \n
+                           state_list=s_list)
 
-return
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
