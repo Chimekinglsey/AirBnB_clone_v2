@@ -1,24 +1,29 @@
 #!/usr/bin/python3
-"""Python script for Airbnb flask"""
+"""
+the app.run will look like: app.run(host='0.0.0.0', port=5000)
+"""
 
 from flask import Flask, render_template
-from models import storage
+from models import storage, State
 
 
 app = Flask(__name__)
 
 
-@app.route("/states_list", strict_slashes=False)
-def all_states():
-    list_states = storage.all(State).values()
-    return render_template("7-states_list.html", list_states=list_states)
-
-
 @app.teardown_appcontext
-def close_session():
+def rm_session(exception=None):
+    """Tear_down method,removes current session"""
     storage.close()
 
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+@app.route('/states_list', strict_slashes=False)
+def state_list():
+    """lists the states"""
+    states = "States"
+    s_list = list(storage.all(State).values)
+    return render_template('7-states_list.html', value=states,
+                           state_list=s_list)
 
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
