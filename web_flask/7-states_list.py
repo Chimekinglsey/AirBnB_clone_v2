@@ -6,7 +6,7 @@ the app.run will look like: app.run(host='0.0.0.0', port=5000)
 """
 
 from flask import Flask, render_template
-from ..models import storage, State
+from models import storage, State
 
 
 app = Flask(__name__)
